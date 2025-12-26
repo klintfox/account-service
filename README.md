@@ -164,5 +164,7 @@ GET /accounts/1234567890/balance
 
 ![Account Balance](https://github.com/klintfox/account-service/blob/master/src/main/resources/evidencias/6.PNG)
 
+![Accounts Records](https://github.com/klintfox/account-service/blob/master/src/main/resources/evidencias/7.PNG)
+
 
 
