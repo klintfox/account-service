@@ -1,0 +1,129 @@
+{
+  "info": {
+    "_postman_id": "account-service-collection-001",
+    "name": "Account Service API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Colección de endpoints para el microservicio de cuentas (account-service) en Quarkus. Puerto 8082."
+  },
+  "item": [
+    {
+      "name": "Obtener cuenta por número",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{jwt_token}}", "type": "text" }
+        ],
+        "url": {
+          "raw": "http://localhost:8082/accounts/{{accountNumber}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8082",
+          "path": ["accounts", "{{accountNumber}}"]
+        }
+      }
+    },
+    {
+      "name": "Listar cuentas por cliente",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{jwt_token}}", "type": "text" }
+        ],
+        "url": {
+          "raw": "http://localhost:8082/accounts?customerId={{customerId}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8082",
+          "path": ["accounts"],
+          "query": [
+            { "key": "customerId", "value": "{{customerId}}" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Obtener saldo de cuenta",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{jwt_token}}", "type": "text" }
+        ],
+        "url": {
+          "raw": "http://localhost:8082/accounts/{{accountNumber}}/balance",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8082",
+          "path": ["accounts", "{{accountNumber}}", "balance"]
+        }
+      }
+    },
+    {
+      "name": "Crear cuenta",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{jwt_token}}", "type": "text" },
+          { "key": "Content-Type", "value": "application/json", "type": "text" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"accountNumber\": \"1234567890\",\n  \"customerId\": 1,\n  \"accountType\": \"C\",\n  \"balance\": 1000.00\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8082/accounts",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8082",
+          "path": ["accounts"]
+        }
+      }
+    },
+    {
+      "name": "Cambiar estado de cuenta",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{jwt_token}}", "type": "text" }
+        ],
+        "url": {
+          "raw": "http://localhost:8082/accounts/{{accountNumber}}/status?active={{active}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8082",
+          "path": ["accounts", "{{accountNumber}}", "status"],
+          "query": [
+            { "key": "active", "value": "{{active}}" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Actualizar cuenta",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{jwt_token}}", "type": "text" },
+          { "key": "Content-Type", "value": "application/json", "type": "text" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"accountType\": \"M\",\n  \"active\": true\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8082/accounts/{{accountNumber}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8082",
+          "path": ["accounts", "{{accountNumber}}"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    { "key": "jwt_token", "value": "" },
+    { "key": "accountNumber", "value": "1234567890" },
+    { "key": "customerId", "value": "1" },
+    { "key": "active", "value": "true" }
+  ]
+}
+

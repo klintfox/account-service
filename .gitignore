@@ -1,0 +1,76 @@
+#Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+release.properties
+.flattened-pom.xml
+
+# Eclipse
+.project
+.classpath
+.settings/
+bin/
+
+# IntelliJ
+.idea/
+*.ipr
+*.iml
+*.iws
+# Ignorar configuración de workspace de JetBrains
+*.ws.xml
+# Ignorar archivos de configuración de ejecución
+runConfigurations/
+# Ignorar archivos de diccionario de usuario
+*.dic
+# Ignorar archivos de historial de búsqueda
+search/
+# Ignorar archivos de configuración de inspección
+inspectionProfiles/
+# Ignorar archivos de configuración de tareas
+tasks/
+# Ignorar archivos de configuración de bibliotecas
+libraries/
+# Ignorar archivos de configuración de artefactos
+artifacts/
+# Ignorar archivos de configuración de módulos
+modules.xml
+# Ignorar archivos de configuración de proyectos
+workspace.xml
+# Ignorar archivos de configuración de gradle
+.gradle/
+# Ignorar archivos de configuración de Maven
+.mvn/
+# Ignorar archivos de configuración de Quarkus CLI
+/.quarkus/cli/plugins/
+
+# NetBeans
+nb-configuration.xml
+
+# Visual Studio Code
+.vscode
+.factorypath
+
+# OSX
+.DS_Store
+
+# Vim
+*.swp
+*.swo
+
+# patch
+*.orig
+*.rej
+
+# Local environment
+.env
+
+# Plugin directory
+/.quarkus/cli/plugins/
+# TLS Certificates
+.certs/
+
+# Ignorar archivos de Maven Wrapper y Docker
+mvnw
+mvnw.cmd
+.dockerignore

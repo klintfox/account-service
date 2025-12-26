@@ -1,0 +1,107 @@
+Challenge Técnico: Sistema de Transferencias Bancarias con Quarkus
+Contexto del Reto
+Los participantes deberán implementar un sistema de transferencias bancarias distribuido
+utilizando Quarkus, aplicando los conocimientos adquiridos durante las 6 sesiones de
+upskilling. El sistema debe permitir realizar transferencias de dinero entre cuentas corrientes de
+clientes del banco, garantizando consistencia, seguridad y trazabilidad.
+Tiempo estimado: 6 horas
+Nivel: Intermedio
+Tecnologías principales: Quarkus, Kafka, SQL, Docker
+
+Arquitectura del Sistema
+El sistema estará compuesto por 3 microservicios independientes:
+1. Microservicio de Clientes (`customer-service`)
+- Gestiona la información de los clientes del banco
+- Expone endpoints REST para consultar y validar clientes
+- Almacena datos como: ID, nombre, documento de identidad, email, estado del cliente
+2. Microservicio de Cuentas (`account-service`)
+- Administra las cuentas corrientes asociadas a los clientes
+- Maneja el saldo de cada cuenta
+- Expone endpoints para consultar cuentas y validar disponibilidad de fondos
+- Almacena: número de cuenta, ID del cliente propietario, saldo actual, tipo de cuenta, estado
+3. Microservicio de Transacciones (`transaction-service`)
+- Orquesta el proceso de transferencia entre cuentas
+- Registra todas las transacciones realizadas
+- Implementa la lógica de negocio para débitos y créditos
+- Publica eventos de transacciones en Kafka
+- Almacena: ID de transacción, cuenta origen, cuenta destino, monto, fecha/hora, estado,
+descripción
+---
+
+Requisitos Funcionales
+RF1: Consulta de Clientes
+- Endpoint GET para obtener información de un cliente por ID
+- Validación de existencia del cliente
+RF2: Consulta de Cuentas
+- Endpoint GET para obtener información de una cuenta por número
+- Endpoint GET para listar cuentas de un cliente específico
+- Validación de saldo disponible
+RF3: Transferencia de Dinero
+- Endpoint POST para iniciar una transferencia entre dos cuentas
+- Validaciones requeridas:
+- Ambas cuentas deben existir y estar activas
+- La cuenta origen debe tener saldo suficiente
+- El monto debe ser mayor a cero
+- Las cuentas no pueden ser la misma
+- La transferencia debe ser atómica (todo o nada)
+- Generar un ID único de transacción
+RF4: Consulta de Transacciones
+- Endpoint GET para consultar el historial de transacciones de una cuenta
+- Endpoint GET para obtener el detalle de una transacción específica
+---
+
+Requisitos Técnicos
+1. Persistencia y Transacciones (Sesión 2)
+- Utilizar Hibernate ORM con Panache para todas las entidades
+- Implementar repositorios activos o pasivos según convenga
+- Configurar PostgreSQL como base de datos (una BD por microservicio)
+- Gestionar transacciones con `@Transactional`
+- Implementar manejo de transacciones distribuidas o patrón Saga para la transferencia
+2. Seguridad y Autenticación (Sesión 3)
+- Implementar autenticación JWT en los endpoints críticos
+- Proteger el endpoint de transferencias con roles (ej: ROLE_USER, ROLE_ADMIN)
+- Configurar CORS adecuadamente
+- Los endpoints de consulta pueden tener seguridad básica
+- Incluir al menos 2 usuarios de prueba con diferentes roles
+3. Integración y Messaging (Sesión 4)
+- Configurar Apache Kafka como sistema de mensajería
+- El microservicio de Transacciones debe publicar eventos cuando:
+- Una transferencia se completa exitosamente
+- Una transferencia falla
+- El microservicio de Cuentas debe consumir estos eventos para:
+- Actualizar saldos de manera asíncrona
+- Registrar logs de auditoría
+- Definir al menos 2 topics: `transactions.completed` y `transactions.failed`
+- Implementar serialización JSON para los mensajes
+4. Observabilidad y Monitoreo (Sesión 5)
+- Configurar health checks en los 3 microservicios (`/q/health`)
+- Implementar métricas personalizadas:
+- Contador de transferencias exitosas
+- Contador de transferencias fallidas
+- Gauge del monto total transferido
+- Exponer métricas en formato Prometheus (`/q/metrics`)
+- Implementar logs estructurados con niveles apropiados
+- Incluir trazabilidad con correlation IDs en las peticiones
+5. Fundamentos de Quarkus (Sesión 1)
+- Utilizar inyección de dependencias con CDI
+- Implementar validación de datos con Bean Validation
+- Configurar propiedades en `application.properties` o `application.yml`
+- Utilizar RestEasy Reactive para los endpoints REST
+- Implementar manejo de excepciones personalizado con ExceptionMappers
+---
+
+Entregables Esperados
+1. Código fuente de los 3 microservicios en repositorios Git separados.
+2. README.md con:
+- Instrucciones de ejecución
+- Descripción de la arquitectura
+- Endpoints disponibles
+- Ejemplos de uso
+- Credenciales de prueba
+Criterios de Evaluación
+Funcionalidad: 30% . El sistema realiza transferencias correctamente y cumple todos los RF
+Persistencia: 15%. Uso correcto de Panache, transacciones y manejo de datos
+Seguridad: 15% .Implementación adecuada de JWT y autorización
+Messaging: 15%. Integración correcta con Kafka, publicación y consumo de eventos
+Observabilidad: 10%.Health checks, métricas y logs implementados
+Calidad de Código: 15%. Estructura, nomenclatura, manejo de errores
