@@ -82,6 +82,15 @@ This microservice is part of a distributed banking system. The architecture cons
 
 ## Usage Examples
 
+### Test Credentials
+
+To generate token follow this steps: https://github.com/klintfox/account-service
+
+You must include a valid JWT token in the `Authorization` header for all requests. Example:
+```
+Authorization: Bearer <jwt_token>
+```
+
 ### Create Account
 **Request:**
 ```json
@@ -156,11 +165,4 @@ GET /accounts/1234567890/balance
 ![Account Balance](https://github.com/klintfox/account-service/blob/master/src/main/resources/evidencias/6.PNG)
 
 
-## Test Credentials
 
-To generate token follow this tutorial https://github.com/klintfox/account-service
-
-You must include a valid JWT token in the `Authorization` header for all requests. Example:
-```
-Authorization: Bearer <jwt_token>
-```
