@@ -138,6 +138,24 @@ GET /accounts/1234567890/balance
 1000.00
 ```
 
+## Evidences
+![Create Account](https://github.com/klintfox/account-service/blob/master/src/main/resources/evidencias/1.PNG)
+
+![Upate Accont Status](https://github.com/klintfox/account-service/blob/master/src/main/resources/evidencias/2.PNG)
+
+![Enable/Disable Account](https://github.com/klintfox/account-service/blob/master/src/main/resources/evidencias/3.PNG)
+
+![Get Account](https://github.com/klintfox/account-service/blob/master/src/main/resources/evidencias/4.PNG)
+
+![Not Found Account](https://github.com/klintfox/account-service/blob/master/src/main/resources/evidencias/4b.PNG)
+
+![List Accounts](https://github.com/klintfox/account-service/blob/master/src/main/resources/evidencias/5.PNG)
+
+![Not Account by CustomerId](https://github.com/klintfox/account-service/blob/master/src/main/resources/evidencias/5b.PNG)
+
+![Account Balance](https://github.com/klintfox/account-service/blob/master/src/main/resources/evidencias/6.PNG)
+
+
 ## Test Credentials
 
 Use these JWT users for testing:
