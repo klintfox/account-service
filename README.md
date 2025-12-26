@@ -158,9 +158,7 @@ GET /accounts/1234567890/balance
 
 ## Test Credentials
 
-Use these JWT users for testing:
-- **user1** (role: USER)
-- **admin1** (role: ADMIN)
+To generate token follow this tutorial https://github.com/klintfox/account-service
 
 You must include a valid JWT token in the `Authorization` header for all requests. Example:
 ```
